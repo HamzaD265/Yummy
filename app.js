@@ -31,7 +31,7 @@ let isSignUpMode = false;
 
 const translations = {
   ar: {
-    logo: "🍔 Yummy Delights",
+    logo: " Yummy Delights",
     menuTitle: "قائمة الطعام المميزة",
     cartText: "السلة",
     login: "دخول",
@@ -45,7 +45,7 @@ const translations = {
     orderSuccess: "شكراً لطلبك!"
   },
   en: {
-    logo: "🍔 Yummy Delights",
+    logo: " Yummy Delights",
     menuTitle: "Our Special Menu",
     cartText: "Cart",
     login: "Login",
@@ -407,7 +407,7 @@ function setupEventListeners() {
       const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
       const paymentText = paymentMethod === 'cash' ? "كاش عند الاستلام (دفع جدية حجز 25% فودافون كاش)" : "فودافون كاش (كامل القيمة)";
 
-      let message = `*طلب جديد من Yummy Delights* 🍔\n\n`;
+      let message = `*طلب جديد من Yummy Delights* \n\n`;
       cart.forEach((item, index) => {
         message += `${index + 1}. *${item.name}* (×${item.quantity}) - ${item.price * item.quantity} جنيه\n`;
       });
