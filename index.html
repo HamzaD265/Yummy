@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yummy Delights - أونلاين</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 🌟 شاشة الترحيب الإلزامية -->
+    <section id="welcome-screen" class="welcome-overlay hidden">
+        <div class="welcome-card">
+            <h2>🍔 مرحباً بك في Yummy Delights</h2>
+            <p>سجل دخولك لتتمكن من طلب الطعام وحفظ سلتك</p>
+            <div class="welcome-buttons">
+                <button id="welcome-login-btn" class="btn-primary">تسجيل الدخول</button>
+                <button id="welcome-signup-btn" class="btn">إنشاء حساب جديد</button>
+                <button id="welcome-skip-btn" class="btn-skip">التخطي وتصفح المنيو ➔</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- الهيدر المطور ونظام القائمة (تمت إزالة أزرار اللغة والتواصل من هنا) -->
+    <header>
+        <div class="logo" id="logo-text">🍔 Yummy Delights</div>
+        <nav>
+            <!-- زر لوحة التحكم يظهر تلقائياً لبريدك الحقيقي hamzatango922@gmail.com -->
+            <button id="admin-nav-btn" class="btn hidden" style="border-color: #e74c3c; color: #e74c3c;">👑 لوحة التحكم</button>
+            
+            <div id="auth-buttons">
+                <!-- ترحيب العميل مع إزاحته وتنسيقه جمالياً بعيداً عن الأزرار -->
+                <span id="user-welcome" class="hidden" style="margin-left: 20px; margin-right: 20px; font-weight: bold; color: #aaa;">
+                    مرحباً، <strong id="user-name" style="color: #e74c3c;"></strong>
+                </span>
+                <button id="login-btn" class="btn">دخول</button>
+                <button id="logout-btn" class="btn hidden">خروج</button>
+            </div>
+            
+            <!-- زر فتح صفحة السلة المنفصلة -->
+            <button id="cart-toggle" class="btn" style="background: #e74c3c; border: none;">🛒 السلة (<span id="cart-count">0</span>)</button>
+        </nav>
+    </header>
+
+    <!-- واجهة تسجيل الدخول المنبثقة -->
+    <section id="auth-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3 id="modal-title">تسجيل الدخول</h3>
+            <input type="email" id="auth-email" placeholder="البريد الإلكتروني" required>
+            
+            <div style="position: relative; display: flex; align-items: center; width: 100%;">
+                <input type="password" id="auth-password" placeholder="كلمة المرور" style="width: 100%; padding-left: 45px; margin-bottom: 15px;" required>
+                <span id="toggle-password-eye" style="position: absolute; left: 15px; top: 12px; cursor: pointer; user-select: none; font-size: 18px;">👁️</span>
+            </div>
+            
+            <p id="auth-mode-toggle" style="cursor: pointer; color: #e74c3c; margin-bottom: 20px; font-size: 14px; text-decoration: underline; text-align: center;">ليس لديك حساب؟ إنشاء حساب جديد</p>
+            
+            <div class="modal-actions">
+                <button id="submit-auth-btn" class="btn-primary">تأكيد</button>
+                <button id="close-auth" class="btn-danger">إلغاء</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- المحتوى الرئيسي للموقع -->
+    <main>
+        <!-- بنر المنيو العريض والفخم الجديد باللونين الأحمر والأسود المتدرج -->
+        <div class="menu-banner">
+            <h1>✨ Yummy Delights ✨</h1>
+            <p>أشهى وألذ الوجبات المحضرة بكل حب ونظافة خصيصاً لك</p>
+        </div>
+
+        <!-- قائمة الطعام الأساسية (المنيو) -->
+        <section class="menu-section">
+            <h2 id="menu-title">قائمة الطعام المميزة</h2>
+            <div class="menu-grid" id="menu-container">
+                <!-- الأكلات يتم توليدها بالجافاسكريبت تلقائياً من الفايربيز -->
+            </div>
+        </section>
+
+        <!-- 🛒 صفحة السلة المنفصلة بالكامل وبها اقتراحات كبيرة وأنيقة -->
+        <section id="cart-page" class="menu-section hidden" style="max-width: 900px; margin: 0 auto; padding: 20px;">
+            <h2>🛒 سلة المشتريات</h2>
+            <div id="cart-items" class="card" style="margin-bottom: 30px; padding: 20px; text-align: right;">
+                <!-- وجبات السلة -->
+            </div>
+            <div class="cart-summary card" style="padding: 25px; margin-bottom: 40px; text-align: right;">
+                <p style="font-size: 22px; font-weight: bold; margin-bottom: 15px;">الإجمالي: <span id="cart-total" style="color:#e74c3c;">0</span> جنيه</p>
+                <div class="payment-methods" style="margin: 20px 0;">
+                    <h4 style="margin-bottom: 10px;">طريقة الدفع المتاحة:</h4>
+                    <label style="display:block; margin-bottom:10px; cursor:pointer;"><input type="radio" name="payment" value="cash" checked> كاش عند الاستلام (دفع جدية حجز 25% فودافون كاش)</label>
+                    <label style="display:block; cursor:pointer;"><input type="radio" name="payment" value="vodafone"> فودافون كاش (دفع الأوردر بالكامل عبر المحفظة)</label>
+                </div>
+                <button id="checkout-btn" class="btn-success" style="width: 100%; padding: 15px; font-size: 18px; margin-top: 15px;">تأكيد الطلب وتوجيهي للواتساب 🚀</button>
+                <button id="close-cart-page" class="btn" style="width: 100%; margin-top: 15px; background:#222; border-color:#333;">➔ العودة لقائمة الطعام</button>
+            </div>
+
+            <!-- 🔥 قسم الاقتراحات الذكية للوجبات الكبيرة أسفل السلة -->
+            <h3 style="margin-top: 50px; margin-bottom: 25px; text-align: center;">💡 نوصي بإضافتها لسلتك (Yummy Suggestions):</h3>
+            <div id="cart-recommendations" class="menu-grid" style="padding-bottom: 40px;">
+                <!-- الاقتراحات الكبيرة تظهر هنا تلقائياً -->
+            </div>
+        </section>
+
+        <!-- 📞 قسم تواصل معنا المحدث والظاهر دائماً بالصفحة الرئيسية -->
+        <section id="contact-section" class="menu-section">
+            <hr style="margin: 40px 0; border: 1px dashed #262626;">
+            <h2>📞 تواصل معنا</h2>
+            <div class="card" style="max-width: 600px; margin: 20px auto; padding: 25px; text-align: center; border-radius: 10px;">
+                <p>يسعدنا الرد على استفساراتكم وطلباتكم دائماً!</p>
+                <h3 style="color: #e74c3c; font-size: 24px; margin: 15px 0;">📱 01100527732</h3>
+                <p> hmzatango922@gmail.com:البريد الإلكتروني</p>
+            </div>
+        </section>
+
+        <!-- 👑 لوحة تحكم المشرف المنفصلة كلياً ومحمية بحسابك الشخصي -->
+        <section id="admin-section" class="menu-section hidden">
+            <hr style="margin: 40px 0; border: 1px dashed #262626;">
+            <h2>👑 لوحة تحكم إدارة المطعم الإحصائية</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>📦 إجمالي الطلبات</h3>
+                    <p id="stat-orders-count">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>👥 عدد الحسابات المسجلة</h3>
+                    <p id="stat-users-count">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>👁️ عدد زيارات الموقع</h3>
+                    <p id="stat-visits-count">0</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 30px;">✨ إضافة صنف جديد للمنيو</h3>
+            <form id="add-product-form" class="card" style="max-width: 500px; margin: 20px 0; text-align: right; display: flex; flex-direction: column; gap: 15px;">
+                <div>
+                    <label>اسم الأكلة:</label>
+                    <input type="text" id="prod-name" required style="width:100%; padding:8px; margin-top:5px; border-radius:5px; border:1px solid #262626; background:#0c0c0c; color:white;">
+                </div>
+                <div>
+                    <label>السعر (جنيه):</label>
+                    <input type="number" id="prod-price" required style="width:100%; padding:8px; margin-top:5px; border-radius:5px; border:1px solid #262626; background:#0c0c0c; color:white;">
+                </div>
+                <div>
+                    <label>رابط صورة الأكلة:</label>
+                    <input type="url" id="prod-image" placeholder="ضع رابط الصورة المباشر هنا" required style="width:100%; padding:8px; margin-top:5px; border-radius:5px; border:1px solid #262626; background:#0c0c0c; color:white;">
+                </div>
+                <button type="submit" class="btn-success" style="width: auto; align-self: flex-start; padding: 10px 30px;">إضافة الصنف للمنيو ✨</button>
+            </form>
+        </section>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+</body>
+</html>
